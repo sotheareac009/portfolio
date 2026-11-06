@@ -12,7 +12,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&family=Geist:wght@300..800&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -509,26 +509,32 @@
             </header>
 
             <h3 class="proj-title">Asset Service</h3>
-            <p class="proj-desc">A backend microservice for intelligent digital asset management. The standout feature: content-addressable storage using buffer hashing — if you upload the same file twice, it's only stored once in S3, saving space and cost automatically.</p>
+            <p class="proj-desc">A multi-tenant backend microservice for digital asset management that any organization can plug into. Create a bucket in Asset Console, receive a <strong>Client Key (CK)</strong> and <strong>Secret Key (SK)</strong>, point your app at Asset Service — and it just works. Every organization&rsquo;s bucket is fully isolated, and buffer-hash deduplication means the same file is only ever stored once in S3.</p>
 
             <div class="proj-features">
               <div class="pf-row">
                 <div class="pf-icon pf-cyan">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="4.5"/><path d="M10.7 12.3L21 2M17 6l3 3M15 8l2 2"/></svg>
                 </div>
-                <span>Upload, Copy, Move & Delete operations</span>
+                <span>CK / SK key-pair authentication on every request</span>
               </div>
               <div class="pf-row">
                 <div class="pf-icon pf-cyan">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>
                 </div>
-                <span>Buffer-hash deduplication — zero redundant files</span>
+                <span>Tenant isolation — no organization can see, access or touch another org&rsquo;s assets</span>
               </div>
               <div class="pf-row">
                 <div class="pf-icon pf-cyan">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
                 </div>
-                <span>AWS S3 optimized — maximum storage efficiency</span>
+                <span>Upload, Move, Copy &amp; Delete APIs — move or copy assets between folders without re-uploading</span>
+              </div>
+              <div class="pf-row">
+                <div class="pf-icon pf-cyan">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <span>Buffer-hash deduplication — zero redundant files in S3</span>
               </div>
             </div>
 
@@ -537,12 +543,34 @@
               <span class="pt">AWS S3</span>
               <span class="pt">REST API</span>
               <span class="pt">Microservice</span>
+              <span class="pt">Multi-tenant</span>
             </div>
           </div>
 
           <!-- Deduplication diagram -->
           <div class="proj-diagram">
-            <div class="diag-label">How deduplication works</div>
+            <div class="diag-block">
+              <div class="diag-label">How organizations connect</div>
+              <div class="diag-flow">
+                <div class="diag-step"><div class="ds-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16l-1.5 13a2 2 0 01-2 1.8h-9a2 2 0 01-2-1.8z"/><path d="M4 7c0-2 3.6-3.5 8-3.5S20 5 20 7"/></svg></div><span>Create bucket</span></div>
+                <div class="diag-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+                <div class="diag-step"><div class="ds-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="4.5"/><path d="M10.7 12.3L21 2M17 6l3 3M15 8l2 2"/></svg></div><span>Get CK &amp; SK</span></div>
+                <div class="diag-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+                <div class="diag-step ds-reuse"><div class="ds-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l6-6-6-6M12 19h8"/></svg></div><span>Call the API</span></div>
+              </div>
+            </div>
+
+            <div class="diag-block">
+              <div class="diag-label">Isolated per organization</div>
+              <div class="iso-row">
+                <div class="iso-org"><span class="iso-name">Org A</span><span class="iso-bucket"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16l-1.5 13a2 2 0 01-2 1.8h-9a2 2 0 01-2-1.8z"/><path d="M4 7c0-2 3.6-3.5 8-3.5S20 5 20 7"/></svg> bucket-a</span></div>
+                <div class="iso-wall" aria-label="isolated"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg></div>
+                <div class="iso-org"><span class="iso-name">Org B</span><span class="iso-bucket"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16l-1.5 13a2 2 0 01-2 1.8h-9a2 2 0 01-2-1.8z"/><path d="M4 7c0-2 3.6-3.5 8-3.5S20 5 20 7"/></svg> bucket-b</span></div>
+              </div>
+            </div>
+
+            <div class="diag-block">
+              <div class="diag-label">How deduplication works</div>
             <div class="diag-flow">
               <div class="diag-step">
                 <div class="ds-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div>
@@ -564,6 +592,7 @@
                 <span>Reuse / Store</span>
               </div>
             </div>
+            </div>
           </div>
         </article>
 
@@ -582,26 +611,32 @@
             </header>
 
             <h3 class="proj-title">Asset Console</h3>
-            <p class="proj-desc">The frontend companion to Asset Service — a fully featured web dashboard for managing digital assets. Demonstrates component-driven React development with a focus on intuitive UX and clean, maintainable code structure.</p>
+            <p class="proj-desc">The self-service dashboard for Asset Service. Any team can sign in, create its own bucket in a few clicks and instantly receive a <strong>CK &amp; SK</strong> to connect its apps — then upload, move, copy and manage its assets in a clean, component-driven React UI. Each organization only ever sees its own buckets.</p>
 
             <div class="proj-features">
               <div class="pf-row">
                 <div class="pf-icon pf-purple">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16l-1.5 13a2 2 0 01-2 1.8h-9a2 2 0 01-2-1.8z"/><path d="M4 7c0-2 3.6-3.5 8-3.5S20 5 20 7"/></svg>
                 </div>
-                <span>Asset browser with file management UI</span>
+                <span>Self-service bucket creation for any organization</span>
               </div>
               <div class="pf-row">
                 <div class="pf-icon pf-purple">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="4.5"/><path d="M10.7 12.3L21 2M17 6l3 3M15 8l2 2"/></svg>
                 </div>
-                <span>Reusable React component library</span>
+                <span>Instant CK &amp; SK credentials to connect to Asset Service</span>
               </div>
               <div class="pf-row">
                 <div class="pf-icon pf-purple">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
                 </div>
-                <span>Real-time feedback & responsive design</span>
+                <span>Asset browser — upload, move, copy &amp; delete files right from the UI</span>
+              </div>
+              <div class="pf-row">
+                <div class="pf-icon pf-purple">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                </div>
+                <span>Reusable React component library &amp; responsive design</span>
               </div>
             </div>
 
@@ -617,7 +652,7 @@
           <div class="proj-mockup">
             <div class="mock-bar">
               <div class="mock-dot md-r"></div><div class="mock-dot md-y"></div><div class="mock-dot md-g"></div>
-              <span class="mock-url">asset-console / dashboard</span>
+              <span class="mock-url">asset-console / buckets / new</span>
             </div>
             <div class="mock-body">
               <div class="mock-sidebar">
@@ -626,14 +661,13 @@
                 <div class="mock-si"></div>
               </div>
               <div class="mock-content">
-                <div class="mock-row mr-wide"></div>
-                <div class="mock-row mr-short"></div>
-                <div class="mock-files">
-                  <div class="mock-file mf-img"></div>
-                  <div class="mock-file mf-doc"></div>
-                  <div class="mock-file mf-vid"></div>
-                  <div class="mock-file mf-img"></div>
+                <div class="mk-title">
+                  <span class="mk-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+                  Bucket <b>acme-assets</b> created
                 </div>
+                <div class="mk-key"><span class="mk-lbl">CK</span><code>ck_live_8f3a91c2…</code><span class="mk-copy">Copy</span></div>
+                <div class="mk-key"><span class="mk-lbl">SK</span><code>••••••••••••••••</code><span class="mk-copy">Copy</span></div>
+                <div class="mk-hint">Point your app to <code>asset-service</code> with these keys →</div>
               </div>
             </div>
           </div>
