@@ -16,11 +16,12 @@ function onScroll() {
 }
 
 // ── Active nav link tracking ──────────────────────────────────────
-const sectionIds = ['home', 'about', 'skills', 'projects', 'contact'];
+const sectionIds = ['home', 'about', 'skills', 'projects', 'education', 'contact'];
 const navItems   = {
   about:    document.getElementById('ni-about'),
   skills:   document.getElementById('ni-skills'),
   projects: document.getElementById('ni-projects'),
+  education: document.getElementById('ni-education'),
   contact:  document.getElementById('ni-contact'),
 };
 
